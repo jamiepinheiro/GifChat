@@ -10,7 +10,12 @@ var MessageSchema = new mongoose.Schema({
     url: {
         type: String,
         required: true,
-        minLength: 1,
+        minLength: 1
+    },
+    socketId: {
+        type: String,
+        required: true,
+        minLength: 1
     }
 });
 

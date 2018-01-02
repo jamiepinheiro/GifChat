@@ -1,4 +1,5 @@
-$.get('/newRoom', function (data) {
-    $('#joinRoomLink').attr('href', data);
-    $('#joinRoomLink').removeClass('disabled');
+$('#joinRoomButton').on('click', () => {
+    $.get('/newRoom', function (data) {
+         window.open(data, '_parent');
+    });
 });
