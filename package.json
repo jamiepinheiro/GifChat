@@ -13,7 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "mongoose": "^5.0.0-rc0",
-    "node-schedule": "^1.2.5"
+    "node-schedule": "^1.2.5",
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {
     "express": "^4.16.2",
