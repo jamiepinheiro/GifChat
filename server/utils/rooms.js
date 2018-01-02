@@ -4,26 +4,47 @@ class Rooms {
     }
 
     newRoom () {
-        var newRoom = {id: Date.now() + 31415, people: 0};
+        var newRoom = {id: Date.now() + 31415, people: []};
         this.rooms.push(newRoom);
-        console.log(this.rooms);
         return newRoom.id;
     }
 
-    findRoom () {
-        if (this.rooms[this.rooms.length - 1] && this.rooms[this.rooms.length - 1].people < 2){
+    findRoomToJoin () {
+        if (this.rooms[this.rooms.length - 1] && this.rooms[this.rooms.length - 1].people.length < 2){
             return this.rooms[this.rooms.length - 1].id;
         }
         return this.newRoom();
     }
 
-    joinRoom (id) {
+    joinRoom (id, socketId) {
         var room = this.rooms.find((room) => room.id == id);
-        console.log(this.rooms, id, room);
         if (room) {
-            room.people += 1;
+            room.people.push(socketId);
         }
     }
+
+    findRoomBySocket (socketId) {
+        var room = this.rooms.find((room) => room.people.includes(socketId));
+
+        if (room) {
+            return room.id;
+        }
+    }
+
+    leaveRoom (socketId) {
+        var room = this.rooms.find((room) => room.people.includes(socketId));
+
+        if (room) {
+            room.people = room.people.filter((person) => person != socketId);
+
+            if (room.people.length === 0) {
+                this.rooms.pop(room);
+            }
+        }
+
+    }
+
+
 }
 
 module.exports = {Rooms};
