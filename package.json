@@ -1,0 +1,22 @@
+{
+  "name": "gifchat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
+    "test-watch": "nodemon --exec npm test",
+    "start": "node server/server.js",
+    "start-local": "export NODE_ENV=development || SET \"NODE_ENV=development\" && node server/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.0.0-rc0",
+    "node-schedule": "^1.2.5"
+  },
+  "devDependencies": {
+    "express": "^4.16.2",
+    "mocha": "^4.1.0"
+  }
+}

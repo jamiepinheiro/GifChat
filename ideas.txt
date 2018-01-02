@@ -1,0 +1,6 @@
+GIFCHAT
+
+get connnected to random people
+message only using gifs
+bing image search api to get images
+stats about most common gif choices
