@@ -1,11 +1,12 @@
+
+const config = require('./config/config');
+const https = require('https');
 const http = require('http');
 
 const express = require('express');
 const socketIO = require('socket.io');
 const schedule = require('node-schedule');
-const axios = require('axios');
 
-const config = require('./config/config');
 //const mongoose = require('./db/mongoose');
 //const {Message} = require('./models/message');
 const {Rooms} = require('./utils/rooms');
@@ -42,9 +43,28 @@ app.get('/newRoom', async (req, res) => {
 
 app.get('/gifs', async (req, res) => {
     var search = req.query.search;
-    res.send({gifs: []});
-});
 
+    https.request({
+        method : 'GET',
+        hostname : 'api.cognitive.microsoft.com',
+        path : '/bing/v7.0/images/search?count=5&imageType=AnimatedGif&q=' + encodeURIComponent(search),
+        headers : {
+            'Ocp-Apim-Subscription-Key' : process.env.BING_API_KEY
+        }
+    }, (response) => {
+        var body = '';
+        response.on('data', function (d) {
+            body += d;
+        });
+        response.on('end', function () {
+            body = JSON.parse(body).value.map((item) => {return {name: search, url: item.contentUrl}});
+            res.send(body);
+        });
+        response.on('error', function (e) {
+            res.status(400).send(e.message);
+        });
+    }).end();
+});
 
 var hourlyJob = schedule.scheduleJob('0 * * * *', () => {
   console.log('The answer to life, the universe, and everything!');

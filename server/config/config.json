@@ -1,10 +1,12 @@
 {
     "test": {
         "PORT": "3000",
-        "MONGODB_URI": "mongodb://localhost:27017/GifChatTest"
+        "MONGODB_URI": "mongodb://localhost:27017/GifChatTest",
+        "BING_API_KEY": "7a9db8aeb3264a6393ed6f4af989437f"
     },
     "development": {
         "PORT": "3000",
-        "MONGODB_URI": "mongodb://localhost:27017/GifChat"
+        "MONGODB_URI": "mongodb://localhost:27017/GifChat",
+        "BING_API_KEY": "7a9db8aeb3264a6393ed6f4af989437f"
     }
 }
