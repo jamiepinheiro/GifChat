@@ -25,13 +25,10 @@ io.on('connection', (socket) => {
     socket.on('join', (params) => {
         socket.join(params.room);
         rooms.joinRoom(params.room, socket.id);
-        console.log(rooms.findRoomBySocket(socket.id));
-        console.log(rooms.rooms);
     });
 
     socket.on('disconnect', () => {
         rooms.leaveRoom(socket.id);
-        console.log(rooms.rooms);
     });
 
 });
@@ -47,7 +44,7 @@ app.get('/gifs', async (req, res) => {
     https.request({
         method : 'GET',
         hostname : 'api.cognitive.microsoft.com',
-        path : '/bing/v7.0/images/search?count=5&imageType=AnimatedGif&q=' + encodeURIComponent(search),
+        path : '/bing/v7.0/images/search?count=4&imageType=AnimatedGif&q=' + encodeURIComponent(search),
         headers : {
             'Ocp-Apim-Subscription-Key' : process.env.BING_API_KEY
         }
@@ -57,8 +54,13 @@ app.get('/gifs', async (req, res) => {
             body += d;
         });
         response.on('end', function () {
-            body = JSON.parse(body).value.map((item) => {return {name: search, url: item.contentUrl}});
-            res.send(body);
+            try {
+                body = JSON.parse(body).value.map((item) => {return {name: search, url: item.contentUrl}});
+                res.send(body);
+            } catch (e) {
+                res.status(404).send(body);
+            }
+
         });
         response.on('error', function (e) {
             res.status(400).send(e.message);
