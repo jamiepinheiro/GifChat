@@ -8,90 +8,115 @@
     </head>
     <body>
 
-        <div class="container fixed-bottom" style="background: grey">
+        <div id="newChatScreen">
+            <div class="row justify-content-center m-2">
+                <h3>Your partner left :(</h3>
+            </div>
+            <div class="row justify-content-center m-2">
+                <button id="newChatButton" class="btn btn-primary col-sm-8 col-md-4">New Chat</button>
+            </div>
+        </div>
 
-            <div id="message-area" class="container p-1 pre-scrollable" style="max-height: 10000px; overflow-x: hidden">
-                <div class="row">
-                    <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
-                        <img class="img-fluid" src="/img/gifs/temp.png">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                        <img class="img-fluid" src="/img/gifs/temp.png">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                        <img class="img-fluid" src="/img/gifs/temp.png">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                        <img class="img-fluid" src="/img/gifs/temp.png">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
-                        <img class="img-fluid" src="/img/gifs/temp.png">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                        <img class="img-fluid" src="/img/gifs/temp.png">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
-                        <img class="img-fluid" src="/img/gifs/temp.png">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                        <img class="img-fluid" src="/img/gifs/temp.png">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
-                        <img class="img-fluid" src="/img/gifs/temp.png">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                        <img class="img-fluid" src="/img/gifs/temp.png">
-                    </div>
-                </div>
+        <div id="loadingScreen">
+            <div class="row justify-content-center">
+                <h3>Searching for partner</h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="loader"></div>
+            </div>
+        </div>
 
+        <div id="chatScreen" class="container">
+
+            <div id="header" class="m-2">
+                <h2>Chatting with user 135135435</h2>
             </div>
 
-
-
-            <div id="gif-search-area" class="container p-1">
-                <hr>
-                <div class="container mt-2">
-                    <div class="row justify-content-center">
-                        <div class="col-md-2 col-sm-3">
-                            <img id="gif-0" class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+            <div class="container fixed-bottom">
+                <div id="message-area" class="container p-1 pre-scrollable" style="overflow-x: hidden">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
+                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
                         </div>
-                        <div class="col-md-2 col-sm-3">
-                            <img id="gif-1" class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                        <div class="col-md-2 col-sm-3">
-                            <img id="gif-2" class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                        <div class="col-md-2 col-sm-3">
-                            <img id="gif-3" class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-
                     </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
+                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
+                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
+                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
+                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
+                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
+                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
+                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
+                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
+                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="container mt-2 mb-2">
-                    <div class="row justify-content-center">
-                        <input id="gif-search" class="col-md-8 col-sm-12" type="text" placeholder="search for gifs" autofocus>
+
+
+                <div id="gif-search-area" class="container p-1">
+                    <hr>
+                    <div class="container mt-2">
+                        <div class="row justify-content-center">
+                            <div class="col-md-2 col-sm-3">
+                                <img id="gif-0" onClick="sendMessage(0)" class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                            </div>
+                            <div class="col-md-2 col-sm-3">
+                                <img id="gif-1" onClick="sendMessage(1)" class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                            </div>
+                            <div class="col-md-2 col-sm-3">
+                                <img id="gif-2" onClick="sendMessage(2)" class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                            </div>
+                            <div class="col-md-2 col-sm-3">
+                                <img id="gif-3" onClick="sendMessage(3)" class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="container mt-2 mb-2">
+                        <div class="row justify-content-center">
+                            <input id="gif-search" class="col-md-8 col-sm-12" type="text" placeholder="search for gifs" autofocus>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
 

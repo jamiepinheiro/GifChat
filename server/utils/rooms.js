@@ -27,7 +27,7 @@ class Rooms {
         var room = this.rooms.find((room) => room.people.includes(socketId));
 
         if (room) {
-            return room.id;
+            return room;
         }
     }
 

@@ -25,10 +25,32 @@ io.on('connection', (socket) => {
     socket.on('join', (params) => {
         socket.join(params.room);
         rooms.joinRoom(params.room, socket.id);
+        var room = rooms.findRoomBySocket(socket.id);
+        if (room) {
+            if (room.people.length === 1) {
+                io.to(room.id).emit("status", "Waiting");
+            } else if (room.people.length === 2){
+                io.to(room.id).emit("status", "Chating");
+            }
+        }
+    });
+
+    socket.on('createMessage', (message) => {
+        var room = rooms.findRoomBySocket(socket.id).id;
+        // TODO Save message into database
+        io.to(room).emit("gotMessage", message);
     });
 
     socket.on('disconnect', () => {
+        var room = rooms.findRoomBySocket(socket.id);
         rooms.leaveRoom(socket.id);
+
+        if (room) {
+            if (room.people.length === 1) {
+                io.to(room.id).emit("status", "Ended");
+            }
+        }
+
     });
 
 });
