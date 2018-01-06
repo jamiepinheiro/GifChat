@@ -29,65 +29,11 @@
         <div id="chatScreen" class="container">
 
             <div id="header" class="m-2">
-                <h2>Chatting with user 135135435</h2>
+                <h2 id="chatting-with">Chatting with user 135135435</h2>
             </div>
 
             <div class="container fixed-bottom">
-                <div id="message-area" class="container p-1 pre-scrollable" style="overflow-x: hidden">
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
-                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
-                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
-                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
-                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
-                            <img class="object-fit_contain img-fluid" src="/img/gifs/temp.png">
-                        </div>
-                    </div>
-
-                </div>
-
-
+                <div id="message-area" class="container p-1" style="overflow-x: hidden"></div>
 
                 <div id="gif-search-area" class="container p-1">
                     <hr>
@@ -119,12 +65,27 @@
 
         </div>
 
+        <script id="user-message-template" type="text/template">
+            <div class="row">
+                <div class="col-md-2 col-sm-4 offset-md-7 offset-sm-7">
+                    <img class="object-fit_contain img-fluid" src="{{url}}">
+                </div>
+            </div>
+        </script>
 
+        <script id="partner-message-template" type="text/template">
+            <div class="row">
+                <div class="col-md-2 col-sm-4 offset-md-3 offset-sm-1">
+                    <img class="object-fit_contain img-fluid" src="{{url}}">
+                </div>
+            </div>
+        </script>
 
         <script src="/js/lib/jquery-3.2.1.min.js" type="text/javascript"></script>
         <script src="/js/lib/tether.min.js" type="text/javascript"></script>
         <script src="/js/lib/bootstrap.min.js" type="text/javascript"> </script>
         <script src="/socket.io/socket.io.js" type="text/javascript"></script>
+        <script src="/js/lib/mustache.js" type="text/javascript"> </script>
         <script src="/js/lib/deparam.js" type="text/javascript"></script>
         <script src="/js/chat.js" type="text/javascript"> </script>
     </body>

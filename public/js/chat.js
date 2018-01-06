@@ -3,14 +3,30 @@ var socket = io();
 socket.on('connect', function () {
     var params = $.deparam(window.location.search);
     socket.emit('join', params);
+    $('#chatting-with').html(`Chatting with user_${Math.round(Math.random() * 1000000)}`)
 });
 
 socket.on('gotMessage', function (message) {
     var $messageArea = $('#message-area');
+
+    var template;
+
+    if (message.id == socket.id) {
+        template = $('#user-message-template').html();
+    }else {
+        template = $('#partner-message-template').html();
+    }
+
+    var html = Mustache.render(template, {
+        url: message.url
+    });
+
+    $('#message-area').append(html).show('slow');
+
     $messageArea.css('max-height', ($(window).height() - $('#gif-search-area').height() -$('#header').height()) * 0.95 + 'px');
     $messageArea.animate({
-      scrollTop: $messageArea.scrollHeight - $messageArea.clientHeight
-    }, 1000);
+      scrollTop: 100000
+  }, 1000);
     console.log(message);
 });
 
@@ -33,7 +49,7 @@ socket.on('status', function (status) {
 
 // predict when a user is done typing
 var typingTimer;
-var doneTypingInterval = 1000;
+var doneTypingInterval = 500;
 var $input = $('#gif-search');
 
 $input.on('keyup', function () {

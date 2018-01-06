@@ -38,7 +38,11 @@ io.on('connection', (socket) => {
     socket.on('createMessage', (message) => {
         var room = rooms.findRoomBySocket(socket.id).id;
         // TODO Save message into database
-        io.to(room).emit("gotMessage", message);
+        io.to(room).emit("gotMessage", {
+            name: message.name,
+            url: message.url,
+            id: socket.id
+        });
     });
 
     socket.on('disconnect', () => {
