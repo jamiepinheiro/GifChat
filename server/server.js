@@ -7,8 +7,8 @@ const express = require('express');
 const socketIO = require('socket.io');
 const schedule = require('node-schedule');
 
-//const mongoose = require('./db/mongoose');
-//const {Message} = require('./models/message');
+const mongoose = require('./db/mongoose');
+const {Message} = require('./models/message');
 const {Rooms} = require('./utils/rooms');
 
 var app = express();
@@ -37,7 +37,19 @@ io.on('connection', (socket) => {
 
     socket.on('createMessage', (message) => {
         var room = rooms.findRoomBySocket(socket.id).id;
-        // TODO Save message into database
+
+        var message = new Message({
+            word: message.name,
+            url: message.url,
+            createdAt: + new Date()
+        });
+
+        message.save().then(() => {
+            console.log('saved message');
+        }).catch((e) => {
+            console.log(e);
+        });
+
         io.to(room).emit("gotMessage", {
             name: message.name,
             url: message.url,
@@ -60,11 +72,20 @@ io.on('connection', (socket) => {
 });
 
 // api routes
-app.get('/newRoom', async (req, res) => {
+app.get('/newRoom', (req, res) => {
     res.send(`/chat.html?room=${rooms.findRoomToJoin()}`);
 });
 
-app.get('/gifs', async (req, res) => {
+app.get('/getMessages', async (req, res) => {
+    try {
+        var messages = await Message.find();
+        res.send(messages);
+    } catch (e) {
+        res.status(400);
+    }
+});
+
+app.get('/gifs', (req, res) => {
     var search = req.query.search;
 
     https.request({
