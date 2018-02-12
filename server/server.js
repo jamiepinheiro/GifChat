@@ -73,7 +73,7 @@ io.on('connection', (socket) => {
 
 // api routes
 app.get('/newRoom', (req, res) => {
-    res.send(rooms.findRoomToJoin());
+    res.send(`${rooms.findRoomToJoin()}`);
 });
 
 app.get('/getMessages', async (req, res) => {
