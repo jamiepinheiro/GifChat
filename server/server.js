@@ -14,10 +14,18 @@ const {Rooms} = require('./utils/rooms');
 var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
+io.origins('*:*');
 var rooms = new Rooms();
 var port = process.env.PORT || 3000;
 
-app.use(express.static('public'));
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control, Pragma');
+  next();
+
+});
 
 //socket.io
 io.on('connection', (socket) => {
@@ -91,7 +99,7 @@ app.get('/gifs', (req, res) => {
     https.request({
         method : 'GET',
         hostname : 'api.cognitive.microsoft.com',
-        path : '/bing/v7.0/images/search?count=4&imageType=AnimatedGif&q=' + encodeURIComponent(search),
+        path : '/bing/v7.0/images/search?count=9&imageType=AnimatedGif&q=' + encodeURIComponent(search),
         headers : {
             'Ocp-Apim-Subscription-Key' : process.env.BING_API_KEY
         }

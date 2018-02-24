@@ -1,5 +1,5 @@
-var socket = io();
-
+var socket = io("https://gifchat1.herokuapp.com");
+console.log('hello');
 socket.on('connect', function () {
     var params = $.deparam(window.location.search);
     socket.emit('join', params);
