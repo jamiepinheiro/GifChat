@@ -16,7 +16,7 @@ var server = http.createServer(app);
 var io = socketIO(server);
 io.origins('*:*');
 var rooms = new Rooms();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8000;
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -58,9 +58,17 @@ io.on('connection', (socket) => {
             console.log(e);
         });
 
-        io.to(room).emit("gotMessage", {
+        io.to(room).emit('gotMessage', {
             name: message.name,
             url: message.url,
+            id: socket.id
+        });
+    });
+
+    socket.on('name', (name) => {
+        var room = rooms.findRoomBySocket(socket.id).id;
+        io.to(room).emit('newName', {
+            name,
             id: socket.id
         });
     });
@@ -74,7 +82,6 @@ io.on('connection', (socket) => {
                 io.to(room.id).emit("status", "Ended");
             }
         }
-
     });
 
 });
